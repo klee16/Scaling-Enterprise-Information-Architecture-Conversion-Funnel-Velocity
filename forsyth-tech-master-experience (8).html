@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kel-Lee | Digital Content & CRM Specialist Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-main: #060a13;
+            --bg-card: #0b1329;
+            --bg-nested: #020714;
+            --border-color: #1e2e4d;
+            --text-main: #94a3b8;
+            --text-light: #f8fafc;
+            --accent-blue: #005a9c;
+            --accent-glow: #38bdf8;
+            --accent-green: #deff9a;
+            --font-display: 'Urbanist', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            line-height: 1.7;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .nav-dock {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(11, 19, 41, 0.9);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(12px);
+            padding: 12px 24px;
+            border-radius: 50px;
+            display: flex;
+            gap: 20px;
+            z-index: 1000;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            width: max-content;
+            max-width: 90%;
+            justify-content: center;
+        }
+        .nav-dock a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 700;
+            font-family: var(--font-display);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .nav-dock a:hover { color: var(--accent-glow); }
+
+        .experience-wrapper {
+            max-width: 1200px;
+            margin: 110px auto 60px auto;
+            padding: 0 20px;
+        }
+
+        .hero-banner {
+            background: linear-gradient(135deg, #020714 0%, #0b1329 100%);
+            border: 1px solid var(--border-color);
+            padding: 60px 40px;
+            border-radius: 24px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-banner::after {
+            content: '';
+            position: absolute;
+            top: -20%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 90, 156, 0.2) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .identity-badge {
+            background: rgba(0, 90, 156, 0.15);
+            border: 1px solid var(--accent-blue);
+            color: var(--accent-glow);
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            display: inline-block;
+            margin-bottom: 20px;
+            font-family: var(--font-display);
+        }
+        .hero-banner h1 {
+            font-family: var(--font-display);
+            font-size: 38px;
+            font-weight: 800;
+            color: var(--text-light);
+            line-height: 1.2;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+        .hero-banner h1 span { color: var(--accent-green); }
+        
+        .meta-strip {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 24px;
+            margin-top: 40px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 30px;
+        }
+        .meta-node span { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: #526484; font-weight: 700; }
+        .meta-node strong { font-size: 17px; color: var(--text-light); font-family: var(--font-display); font-weight: 600; }
+
+        .dashboard-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .pane-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 40px;
+            border-radius: 24px;
+            margin-bottom: 30px;
+        }
+        .pane-heading {
+            font-family: var(--font-display);
+            font-size: 24px;
+            color: var(--text-light);
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .pane-heading i { color: var(--accent-glow); }
+
+        .kpi-rail { display: flex; flex-direction: column; gap: 24px; }
+        .kpi-box {
+            background: linear-gradient(180deg, #0b1329 0%, #020714 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 24px;
+            text-align: center;
+            border-left: 5px solid var(--accent-blue);
+        }
+        .kpi-box.green { border-left-color: var(--accent-green); }
+        .kpi-box.glow { border-left-color: var(--accent-glow); }
+        
+        .kpi-val { font-family: var(--font-display); font-size: 44px; font-weight: 800; color: var(--text-light); line-height: 1; margin-bottom: 6px; }
+        .kpi-val.green { color: var(--accent-green); }
+        .kpi-val.blue { color: var(--accent-glow); }
+        .kpi-lbl { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: #526484; margin-bottom: 8px; }
+        .kpi-desc { font-size: 13.5px; color: var(--text-main); line-height: 1.5; }
+
+        .chart-container { background: var(--bg-nested); border: 1px solid var(--border-color); padding: 24px; border-radius: 16px; margin-top: 24px; }
+        .bar-group { display: flex; flex-direction: column; gap: 24px; }
+        .bar-row { display: flex; flex-direction: column; gap: 8px; }
+        .bar-lbl { text-align: left; font-size: 14px; font-weight: 600; color: var(--text-light); }
+        .bar-track { width: 100%; height: 36px; background: #01040a; border-radius: 8px; overflow: hidden; border: 1px solid var(--border-color); position: relative; }
+        .bar-fill { height: 100%; background: linear-gradient(90deg, var(--accent-blue), var(--accent-green)); border-radius: 6px; display: flex; align-items: center; padding-left: 12px; }
+        .bar-text { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); font-size: 12px; font-weight: 700; color: #ffffff; text-shadow: 0 1px 4px rgba(0,0,0,0.8); pointer-events: none; white-space: nowrap; }
+
+        .table-responsive { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; margin-top: 20px; border-radius: 12px; border: 1px solid var(--border-color); }
+        
+        .matrix-sheet { width: 100%; border-collapse: collapse; min-width: 650px; margin: 20px 0; background-color: #ffffff; border: 1px solid #e2e8f0; }
+        .matrix-sheet th { background-color: #0f172a; color: #ffffff; font-family: var(--font-display); font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; padding: 14px; text-align: left; border: 1px solid #cbd5e1; }
+        .matrix-sheet td { padding: 14px; border: 1px solid #e2e8f0; font-size: 13.5px; color: #1e293b; font-family: var(--font-body); }
+        .matrix-sheet tr:nth-child(even) { background-color: #f8fafc; }
+
+        .pos-trend { color: var(--accent-glow); font-weight: 600; }
+        .neg-trend { color: #f87171; font-weight: 600; }
+
+        .tile-node { background: var(--bg-nested); border: 1px solid var(--border-color); padding: 24px; border-radius: 16px; margin-bottom: 20px; }
+        .tile-node h4 { font-family: var(--font-display); color: var(--text-light); font-size: 18px; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
+        .tile-node h4 i { color: var(--accent-green); }
+        .tile-node ul { list-style: none; padding-left: 20px; margin-top: 10px; }
+        .tile-node li { position: relative; margin-bottom: 6px; font-size: 14.5px; }
+        .tile-node li::before { content: "•"; color: var(--accent-blue); font-weight: bold; position: absolute; left: -15px; }
+
+        .manuscript-section { background-color: #ffffff; color: #1e293b; border-radius: 24px; padding: 50px 40px; box-shadow: 0 40px 80px rgba(0,0,0,0.6); margin-top: 40px; }
+        .manuscript-header { border-bottom: 2px solid #005a9c; padding-bottom: 20px; margin-bottom: 30px; }
+        .manuscript-header h2 { font-family: var(--font-display); font-size: 28px; font-weight: 800; color: #005a9c; line-height: 1.2; margin-bottom: 12px; border: none; padding: 0; }
+        .manuscript-byline { font-size: 15px; font-weight: 600; color: #475569; margin-bottom: 4px; }
+        .manuscript-institution { font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; color: #64748b; font-weight: 600; }
+        
+        .abstract-container { background-color: #f8fafc; border-left: 4px solid #475569; padding: 20px; margin: 30px 0; font-style: italic; font-size: 14.5px; border-radius: 0 12px 12px 0; }
+        .abstract-title { font-weight: 700; font-style: normal; text-transform: uppercase; color: #0f172a; font-size: 12px; letter-spacing: 1.5px; margin-bottom: 6px; font-family: var(--font-display); }
+        
+        .manuscript-section h3 { font-family: var(--font-display); font-size: 20px; color: #005a9c; margin-top: 36px; margin-bottom: 14px; border-bottom: 1px solid #e2e8f0; padding-bottom: 6px; }
+        .manuscript-section h4 { font-family: var(--font-display); font-size: 16.5px; color: #2b6cb0; margin-top: 24px; margin-bottom: 8px; }
+        .manuscript-section p { font-size: 15px; line-height: 1.75; color: #334155; margin-bottom: 18px; text-align: justify; }
+        .manuscript-section ul { padding-left: 20px; margin-bottom: 18px; }
+        .manuscript-section li { font-size: 15px; color: #334155; margin-bottom: 6px; }
+        
+        .flow-diagram-box { background-color: #ffffff; border: 1px dashed #cbd5e1; border-radius: 8px; padding: 16px; font-family: 'Courier New', Courier, monospace; font-size: 12px; line-height: 1.4; color: #0f172a; margin: 0; white-space: pre; overflow-x: auto; font-weight: 600; }
+
+        @media (max-width: 968px) {
+            .dashboard-layout { grid-template-columns: 1fr; gap: 24px; }
+            .kpi-rail { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-dock { 
+                padding: 10px 16px; 
+                gap: 15px; 
+                top: 10px; 
+                width: calc(100% - 20px);
+                max-width: 440px;
+                justify-content: space-between;
+                overflow-x: auto;
+                white-space: nowrap;
+                -webkit-overflow-scrolling: touch;
+            }
+            .nav-dock span { display: none; } /* Hide the pipe on mobile to maximize horizontal real estate */
+            .nav-dock a { font-size: 11px; letter-spacing: 0.3px; flex-shrink: 0; }
+            .experience-wrapper { margin-top: 80px; padding: 0 8px; width: 100%; max-width: 100vw; overflow: hidden; }
+            .hero-banner { padding: 30px 16px; border-radius: 16px; }
+            .hero-banner h1 { font-size: 24px; line-height: 1.3; }
+            .pane-card { padding: 16px 12px; border-radius: 14px; width: 100%; overflow: hidden; }
+            .manuscript-section { padding: 20px 15px; border-radius: 14px; }
+            .manuscript-header h2 { font-size: 18px; }
+            .matrix-sheet th, .matrix-sheet td { padding: 8px 6px; font-size: 11px; white-space: normal; word-break: break-word; }
+            .matrix-sheet { min-width: 100%; }
+            .kpi-rail { grid-template-columns: 1fr; gap: 14px; }
+            .kpi-box { padding: 16px; }
+            .kpi-val { font-size: 28px; }
+            .flow-diagram-box { background-color: #ffffff; border: 1px dashed #cbd5e1; border-radius: 8px; padding: 16px; font-family: 'Courier New', Courier, monospace; font-size: 12px; line-height: 1.4; color: #0f172a; margin: 0; white-space: pre; overflow-x: auto; font-weight: 600; }
+        }
+    
+        /* Premium High-Contrast Hero Action Buttons */
+        .hero-cta-group {
+            display: flex;
+            gap: 16px;
+            margin: 28px 0;
+            flex-wrap: wrap;
+        }
+        .cta-action-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-family: var(--font-display);
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            text-decoration: none;
+            letter-spacing: 0.5px;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+        }
+        .cta-btn-github {
+            background-color: #f8fafc;
+            color: #0f172a;
+            border: 1px solid #ffffff;
+        }
+        .cta-btn-github:hover {
+            background-color: #e2e8f0;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.15);
+        }
+        .cta-btn-linkedin {
+            background-color: #0077b5;
+            color: #ffffff;
+            border: 1px solid #38bdf8;
+        }
+        .cta-btn-linkedin:hover {
+            background-color: #006699;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(56, 189, 248, 0.3);
+        }
+
+        
+        /* Graphical Flow Diagram Grid */
+        .pipeline-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin: 15px 0 25px 0;
+        }
+        .pipeline-node {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 16px;
+            position: relative;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: transform 0.2s ease;
+        }
+        .pipeline-node:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent-glow);
+        }
+        .node-step {
+            font-family: var(--font-display);
+            font-size: 10px;
+            color: var(--accent-glow);
+            text-transform: uppercase;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .node-title {
+            font-family: var(--font-display);
+            font-size: 14px;
+            color: var(--text-light);
+            font-weight: 700;
+            margin-bottom: 6px;
+            line-height: 1.2;
+        }
+        .node-desc {
+            font-size: 11.5px;
+            color: var(--text-main);
+            line-height: 1.4;
+        }
+        .node-metric {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            font-weight: 700;
+            font-size: 13px;
+        }
+        .metric-red { color: #f87171; }
+        .metric-green { color: var(--accent-green); }
+        .metric-blue { color: var(--accent-glow); }
+        
+        .diagram-container-wrapper {
+            margin: 30px 0;
+            padding: 24px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+        }
+        .diagram-label {
+            font-family: var(--font-display);
+            font-size: 13px;
+            font-weight: 800;
+            color: #0f172a;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 8px;
+        }
+
+</style>
+</head>
+<body>
+
+    <nav class="nav-dock">
+        <a href="#case-study"><i class="fa-solid fa-chart-pie"></i> UX Dashboard</a>
+        <a href="#manuscript"><i class="fa-solid fa-file-lines"></i> Research Paper</a>
+        <span style="color: var(--border-color);">|</span>
+        <a href="https://github.com/klee16/resume" target="_blank" style="color: var(--accent-glow);"><i class="fa-brands fa-github"></i> GitHub</a>
+        <a href="https://www.linkedin.com/in/kel-lee-m-s-csit-93b937191" target="_blank" style="color: var(--accent-glow);"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+    </nav>
+
+    <div class="experience-wrapper">
+        
+        <header class="hero-banner">
+            <div class="identity-badge">Unified Content & Architecture Case Study</div>
+            <h1>Simplifying the Student Journey: <br><span>How a Web & CRM Overhaul Cut Onboarding Friction by 35%</span></h1>
+            <p>An enterprise portfolio framework connecting front-end user experience optimizations with backend Element451 CRM pipeline architectures to scale digital services across Forsyth Technical Community College.</p>
+            
+            <div class="hero-cta-group">
+                <a href="https://github.com/klee16/resume" target="_blank" class="cta-action-btn cta-btn-github">
+                    <i class="fa-brands fa-github"></i> GitHub Resume
+                </a>
+                <a href="https://www.linkedin.com/in/kel-lee-m-s-csit-93b937191" target="_blank" class="cta-action-btn cta-btn-linkedin">
+                    <i class="fa-brands fa-linkedin"></i> LinkedIn Profile
+                </a>
+            </div>
+            
+            <div class="meta-strip">
+                <div class="meta-node">
+                    <span>Institutional Position</span>
+                    <strong>Digital Content & CRM Specialist</strong>
+                </div>
+                <div class="meta-node">
+                    <span>Core Infrastructure</span>
+                    <strong>Element451 CRM & GA4 Telemetry</strong>
+                </div>
+                <div class="meta-node">
+                    <span>Performance Matrix</span>
+                    <strong>174 Pages Deployed / 1,200+ Optimization Revisions</strong>
+                </div>
+            </div>
+        </header>
+
+        <section id="case-study" class="dashboard-layout">
+            
+            <div class="main-pane">
+                
+                <div class="pane-card">
+                    <h2 class="pane-heading"><i class="fa-solid fa-compass"></i> Project Overview & Core Mission</h2>
+                    <p>To systematically capture long-tail local search queries and remove friction across structural enrollment steps, I designed and managed a complete directory expansion plan. By engineering componentized templates inside the core content environment, I scaled the active infrastructure while optimizing the internal velocity of administrative web requests down to an agile **1–2 week turnaround window**.</p>
+                </div>
+
+                <div class="pane-card">
+                    <h2 class="pane-heading"><i class="fa-solid fa-cubes"></i> Pillars of Technical Execution</h2>
+                    
+                    <div class="tile-node">
+                        <h4><i class="fa-solid fa-sitemap"></i> 1. Information Architecture Scaling</h4>
+                        <p>Prospective candidates require deep, hyper-specific technical pathway records, yet these historically remained trapped inside static program files. I built a component layout system to safely manage structural scaling parameters:</p>
+                        <ul>
+                            <li><strong>124 Program Tracks Deployed:</strong> Brought 48.2% of specialized credentials directly onto the web.</li>
+                            <li><strong>20 Divisional Landing Hubs:</strong> Standardized clear directory routing links.</li>
+                            <li><strong>30 Ecosystem Interface Pages:</strong> Built resources focusing on checklists, aid updates, and onboarding criteria.</li>
+                        </ul>
+                    </div>
+
+                    <div class="tile-node">
+                        <h4><i class="fa-solid fa-chart-line"></i> 2. Technical SEO Overhaul</h4>
+                        <p>Asset creation requires symmetrical visibility parameters to generate value. Alongside raw wireframes, I built indexable metadata chains deep within document file templates:</p>
+                        <ul>
+                            <li><strong>Semantic Cleanup:</strong> Re-structured document header elements (H1-H4), alternative description syntax, and responsive frame sizes.</li>
+                            <li><strong>Organic Intake Optimization:</strong> Fixed organic search as the site's top driver, processing **340,438 active users**.</li>
+                            <li><strong>Deep Session Preservation:</strong> Users entering the optimized layouts logged strong focus metrics, averaging **1m 10s**.</li>
+                        </ul>
+                    </div>
+
+                    <div class="tile-node">
+                        <h4><i class="fa-solid fa-database"></i> 3. Element451 CRM & Lifecycle Automation</h4>
+                        <p>Scaling front-facing content maps means managing an equivalent surge in backend administrative workflows. Using the Element451 platform, I engineered lifecycle and engagement triggers to turn increased organic traffic into clean data leads:</p>
+                        <ul>
+                            <li><strong>Automated Conversions Stack:</strong> Managed an intake pipeline that processed 43,785 structural conversations in January, scaling automation logic to move 1,779 total leads through application pipelines by March.</li>
+                            <li><strong>Operational Minute Ingestion:</strong> Deployed BoltAgent outreach structures and conversational workflows that saved 178,690 human administrative minutes during peak January onboarding, stabilizing down to 50,733 minutes saved in March.</li>
+                        </ul>
+                    </div>
+
+                    <div class="tile-node">
+                        <h4><i class="fa-solid fa-shield-halved"></i> 4. Platform Health & Telemetry Hygiene</h4>
+                        <ul>
+                            <li><strong>1,200+ Post-Launch Revisions:</strong> Managed production health across rolling logs, processing **151 updates in February** and **126 in March** alone.</li>
+                            <li><strong>Data Purification Pass:</strong> Identified a 40,000-user traffic spike caused by automated server scrapers. Built local proxy exclusions to remove bot noise and preserve analytics accuracy.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="pane-card">
+                    <h2 class="pane-heading"><i class="fa-solid fa-chart-column"></i> Funnel Scanning Acceleration</h2>
+                    <p>Year-over-year behavior analysis highlights a perfect alignment: flattened informational templates enable desktop users to find setup options quickly and proceed immediately to application submissions.</p>
+                    
+                    <div class="chart-container">
+                        <div class="bar-group">
+                            <div class="bar-row">
+                                <div class="bar-lbl">Desktop Funnel Volume</div>
+                                <div class="bar-track">
+                                    <div class="bar-fill" style="width: 100%;"></div>
+                                    <div class="bar-text">+45.91% Intake Growth</div>
+                                </div>
+                            </div>
+                            <div class="bar-row">
+                                <div class="bar-lbl">Cognitive Load Speed</div>
+                                <div class="bar-track">
+                                    <div class="bar-fill" style="width: 65%; background: linear-gradient(90deg, #005a9c, #f87171);"></div>
+                                    <div class="bar-text">-34.87% Reading Time (UX Metric Win)</div>
+                                </div>
+                            </div>
+                            <div class="bar-row">
+                                <div class="bar-lbl">Mobile Guide Retention</div>
+                                <div class="bar-track">
+                                    <div class="bar-fill" style="width: 90%;"></div>
+                                    <div class="bar-text">+44.16% Session Retention Extension</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pane-card">
+                    <h2 class="pane-heading"><i class="fa-solid fa-sliders"></i> Element451 CRM Operational Performance Matrix</h2>
+                    
+                    <!-- Unified Table showing BOTH sets of stats side by side seamlessly -->
+                    <div class="table-responsive">
+                        <table class="matrix-sheet">
+                            <thead>
+                                <tr>
+                                    <th>Timeline Node / Form Asset</th>
+                                    <th>Conversations / Submissions</th>
+                                    <th>Leads Added / Device Telemetry</th>
+                                    <th>Automation Minutes Saved</th>
+                                </tr>
+                            </thead>
+                                                                                    <tbody>
+                                <tr>
+                                    <td><strong>January Operational Report</strong></td>
+                                    <td>43,785 conversations</td>
+                                    <td>1,753 leads added</td>
+                                    <td class="pos-trend">178,690 minutes saved</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>February Operational Report</strong></td>
+                                    <td>21,500 system threads</td>
+                                    <td>1,679 active profiles</td>
+                                    <td>25,801 minutes saved</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>March Operational Report</strong></td>
+                                    <td>2,009 outbound calls</td>
+                                    <td class="pos-trend">779 pipeline actions</td>
+                                    <td class="pos-trend">50,733 minutes saved</td>
+                                </tr>
+                                <tr style="border-top: 2px dashed var(--border-color);">
+                                    <td><strong>Website - Main RFI Form</strong></td>
+                                    <td class="pos-trend">4,597 submissions</td>
+                                    <td>Mobile Safari: 5,265 hits</td>
+                                    <td>Primary lead asset</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Profile Update Form</strong></td>
+                                    <td>1,491 submissions</td>
+                                    <td>Desktop Chrome: 2,106 sessions</td>
+                                    <td>Database workflows</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>[RFI] Paid Campaigns LP</strong></td>
+                                    <td>1,249 submissions</td>
+                                    <td>Mobile Chrome: 1,379 hits</td>
+                                    <td>Micro-funnel tracking</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>embed-forms.451.io Endpoint</strong></td>
+                                    <td>1,309 integrations</td>
+                                    <td>Firefox Mobile: 852 users</td>
+                                    <td>Script widget communication</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>careersurvey.forsythtech.edu</strong></td>
+                                    <td class="pos-trend">1,091 completions</td>
+                                    <td>Edge Desktop: 641 interactions</td>
+                                    <td>Vocational path matching</td>
+                                </tr>
+                                
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="pane-card">
+                    <h2 class="pane-heading"><i class="fa-solid fa-chart-line"></i> Analytics Performance Baseline</h2>
+                    <div class="table-responsive">
+                        <table class="matrix-sheet">
+                            <thead>
+                                <tr>
+                                    <th>Monitored Pathway Block</th>
+                                    <th>Acquisition Vector</th>
+                                    <th>Target Users</th>
+                                    <th>Avg. Active Session</th>
+                                    <th>Rate Vector</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>/programs-courses/ (Catalog Entry)</strong></td>
+                                    <td>Organic Search (Desktop)</td>
+                                    <td>39,967</td>
+                                    <td>1m 00s</td>
+                                    <td class="pos-trend">93.38%</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>/programs-courses/ (Catalog Entry)</strong></td>
+                                    <td>Organic Search (Mobile)</td>
+                                    <td>34,401</td>
+                                    <td>54s</td>
+                                    <td class="pos-trend">91.64%</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>/steps-to-apply/ (Funnel Hub)</strong></td>
+                                    <td>Organic Search (Desktop)</td>
+                                    <td>2,428</td>
+                                    <td>43s <span class="neg-trend">(-34.87%)</span></td>
+                                    <td class="pos-trend">+45.91% Vol</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>/students/apply/apply-now/ (Form Node)</strong></td>
+                                    <td>Organic Search (Desktop)</td>
+                                    <td>17,315</td>
+                                    <td>1m 15s</td>
+                                    <td class="pos-trend">96.76%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+            <aside class="kpi-rail">
+                <div class="kpi-box" style="border-left-color: var(--accent-glow);">
+                    <div class="kpi-val blue">340.4K</div>
+                    <div class="kpi-lbl">SEO Organic Audience</div>
+                    <div class="kpi-desc">High-intent user footprint secured through systemic structural re-indexing.</div>
+                </div>
+                <div class="kpi-box">
+                    <div class="kpi-val blue">174</div>
+                    <div class="kpi-lbl">New Pages Built</div>
+                    <div class="kpi-desc">124 track verticals, 20 branch hubs, and 30 layout guides.</div>
+                </div>
+                <div class="kpi-box green">
+                    <div class="kpi-val green">1,200+</div>
+                    <div class="kpi-lbl">Technical Revisions</div>
+                    <div class="kpi-desc">Sustained agility including 151 updates in February and 126 in March.</div>
+                </div>
+                <div class="kpi-box" style="border-left-color: var(--accent-glow);">
+                    <div class="kpi-val blue">11,742</div>
+                    <div class="kpi-lbl">Total Form Submissions</div>
+                    <div class="kpi-desc">Natively captured leads via CRM form assets at a rate of 1.96 per contact.</div>
+                </div>
+                <div class="kpi-box green">
+                    <div class="kpi-val green">255.2K+</div>
+                    <div class="kpi-lbl">Total Automated CRM Minutes</div>
+                    <div class="kpi-desc">Operational space recaptured via automated validation and database logic pipelines.</div>
+                </div>
+                <div class="kpi-box" style="border-left-color: var(--accent-glow);">
+                    <div class="kpi-val blue">-34.87%</div>
+                    <div class="kpi-lbl">Task Processing Length</div>
+                    <div class="kpi-desc">Drop in desktop time-on-checklist pages, showing layout-scanning efficiency.</div>
+                </div>
+                <div class="kpi-box green">
+                    <div class="kpi-val green">1-2 Wks</div>
+                    <div class="kpi-lbl">Publishing SLA</div>
+                    <div class="kpi-desc">Eliminated old operational roadblocks to secure rapid content deployment.</div>
+                </div>
+            </aside>
+        </section>
+
+        <section id="manuscript" class="manuscript-section">
+            <div class="manuscript-header">
+                <h2>Bridging Front-End Information Architecture with Back-End CRM Automation Pipelines: A 12-Month Omnichannel Enrollment Case Study</h2>
+                <div class="manuscript-byline">Kel-Lee, M.S. CSIT</div>
+                <div class="manuscript-institution">Digital Content & CRM Specialist • Forsyth Technical Community College</div>
+            </div>
+
+            <div class="abstract-container">
+                <div class="abstract-title">Abstract</div>
+                Modern higher education web ecosystems frequently suffer from a structural paradox: the necessity of housing extensive, compliance-mandated curriculum repositories versus the strategic imperative of providing a frictionless, conversion-focused user journey. This paper examines a 12-month user experience (UX) engineering initiative executed at Forsyth Technical Community College. By implementing a modular, semantic template system, the root academic directory was safely scaled by 174 enterprise pages to capture highly specific, long-tail search intent. Concurrently, high-intent onboarding funnels were flattened to mitigate cognitive fatigue. To capture and process the resulting traffic expansion, lifecycle event workflows were integrated into the institution’s Element451 CRM instance. Through continuous product iteration (1,200+ technical web revisions) and rigorous analytics optimization in Google Analytics 4 (GA4), the project achieved an asymmetric performance lift: a +45.91% surge in user volume alongside an intentional -34.87% reduction in layout processing time, while simultaneously capturing 11,742 total form submissions at a density efficiency of 1.96 per contact, and automating over 255,224 human operational minutes.
+            </div>
+
+            <h3>1. Problem Statement & Operational Context</h3>
+            <p>Prospective community college students exhibit highly fragmented search patterns, frequently querying specific, localized certification pathways rather than generalized degree titles. However, nearly half of Forsyth Tech’s specialized academic offerings historically remained offline, buried inside desktop-bound documents, or obscured within dense, text-heavy directory files. This introduced two critical business vulnerabilities:</p>
+            <ul>
+                <li><strong>Discovery Deficit:</strong> The lack of indexable, search-engine-optimized sub-pages meant the institution failed to capture valuable organic search impressions from non-traditional or continuing education candidates.</li>
+                <li><strong>Cognitive Overwhelm:</strong> When users successfully located enrollment prerequisites, they encountered unstructured "walls of text." This increased cognitive friction, resulting in prolonged session durations characterized by disorientation rather than productive form completion.</li>
+            </ul>
+            <p>The strategic mandate was to scale the institutional digital footprint to surface all offline curriculum modules while simultaneously engineering a high-velocity conversion funnel to accelerate application submissions and structure data flows within Element451.</p>
+
+            
+        <div class="diagram-container-wrapper">
+
+            <div class="diagram-label">Phase 1: Conversion Velocity Pipeline Architecture</div>
+            <div class="pipeline-grid">
+                <div class="pipeline-node">
+                    <div class="node-step"><i class="fa-solid fa-1"></i> Web Acquisition Layer</div>
+                    <div class="node-title">Component Templates & SEO Overhaul</div>
+                    <div class="node-desc">Deployed indexable programmatic pages directly linked to the main root.</div>
+                    <div class="node-metric metric-blue">174 Component Hubs</div>
+                </div>
+                <div class="pipeline-node">
+                    <div class="node-step"><i class="fa-solid fa-2"></i> Cognitive Reduction</div>
+                    <div class="node-title">Scannable Visual UI Design</div>
+                    <div class="node-desc">Removed text friction to accelerate pathway scanning speed.</div>
+                    <div class="node-metric metric-red">-34.87% Processing Time</div>
+                </div>
+                <div class="pipeline-node">
+                    <div class="node-step"><i class="fa-solid fa-3"></i> Data Ingestion Engine</div>
+                    <div class="node-title">Element451 CRM Sync</div>
+                    <div class="node-desc">Anonymous web traffic cleanly converted into CRM data profiles.</div>
+                    <div class="node-metric metric-green">11,742 Total Form Hits</div>
+                </div>
+                <div class="pipeline-node">
+                    <div class="node-step"><i class="fa-solid fa-4"></i> Workflow Automation</div>
+                    <div class="node-title">BoltAgent AI Integration</div>
+                    <div class="node-desc">Absorbed administrative payload during peak cycle application surges.</div>
+                    <div class="node-metric metric-blue">178,690 Minutes Reclaimed</div>
+                </div>
+            </div>
+
+
+            <div class="diagram-label" style="margin-top: 30px;">Phase 2: Core Data Lifecycle & Hygiene Logic</div>
+<div class="flow-diagram-box">
+[ LEGACY REPOSITORY ]     ──► Static PDFs & Content Silos
+          │
+          ▼
+[ MODULE TEMPLETIZATION ] ──► Engineered Unified Visual Layout Matrix
+          │
+          ▼
+[ ENTERPRISE SCALING ]    ──► Launched 174 New Semantic Environments (20 Hubs / 124 Tracks)
+          │
+          ▼
+[ SEO SYNTAX OVERHAUL ]   ──► Standardized DOM Hierarchies (H1-H4 Tags) & Viewports
+          │
+          ▼
+[ FUNNEL ACCELERATION ]   ──► Decreased Desktop Task Parsing Timelines by -34.87%
+          │
+          ▼
+[ TELEMETRY HYGIENE ]     ──► Isolated 35,000+ Bot Hits via Local GA4 Filters
+</div>
+        </div>
+
+
+            <h3>2. Methodology & Architectural Interventions</h3>
+            <h4>2.1 Scalable Information Architecture (IA) Design</h4>
+            <p>To prevent system-wide layout fragmentation, I designed a rigid, component-driven layout matrix inside the Content Management System (CMS). This allowed the digital ecosystem to absorb a massive volume of new content while preserving a unified user experience. Over the annual development cycle, this framework supported the programmatic deployment of 174 brand-new web environments:</p>
+            <ul>
+                <li><strong>20 Foundational Program Hubs:</strong> Established high-level landing categories (<code>/programs-courses/</code>) designed to anchor core academic divisions and provide macro-level navigation options.</li>
+                <li><strong>124 Specialized Program Track Pages:</strong> Deployed highly focused, granular certification sub-pages, successfully migrating 48.2% of the institution's localized curriculum catalog directly onto the indexable web.</li>
+                <li><strong>30 Ecosystem Support Pages:</strong> Built critical auxiliary routing nodes—including specialized landing pages for financial aid protocols, enrollment checklist tracking, and student service assistance.</li>
+            </ul>
+
+            <h4>2.2 Element451 CRM Infrastructure Integration</h4>
+            <p>To maximize the business value of front-end optimizations, communication and processing workflows were tightly integrated into the Element451 CRM platform. This ensured that the traffic expansion drove indexable leads rather than administrative friction. The CRM successfully processed a baseline of 43,785 individual conversation touchpoints in January, tracking an annual accumulation of 11,742 total form submissions across different tracks. Automation paths configured via BoltAgent generated 42,880 active user outreaches, and automated workspace procedures successfully reclaimed 178,690 operational minutes for administrative teams during high-volume application deployment.</p>
+            <p>By February and March, as initial application spikes stabilized, automated rules scaled alongside the needs of incoming candidates. In March 2026, active workflow rules saved 50,733 minutes (a 97% month-over-month optimization lift from February’s baseline) and cleanly advanced 779 high-intent leads into verified student statuses within the institution's central tracking structure.</p>
+            
+
+            <h4>2.3 Agile Product Engineering & Maintenance Operations</h4>
+            <p>Deploying an enterprise-grade content framework requires an aggressive, continuous optimization model to ingest user feedback, satisfy cross-departmental compliance checks, and preserve asset health. By establishing an optimized operational rhythm, I successfully managed over 1,200 verified technical web revisions across the annual timeline. Production analytics from the Q1 cycle demonstrate an exceptionally high operational velocity—sustaining 151 revisions in February and 126 revisions in March alone, while compressing the institutional Service Level Agreement (SLA) down to a strict 1–2 week time-to-publish turnaround.</p>
+
+            <h3>3. Data Analysis & Behavioral Outcomes</h3>
+            <p>Ecosystem behavioral data was compiled using comparative, year-over-year (YoY) multi-channel tracking. The findings reveal a profound shift in user interaction models across both desktop and mobile viewports.</p>
+
+            <h4>3.1 Content Retention and Interest Capture</h4>
+            <p>Rather than diluting traffic profiles or spiking exit vectors, the massive addition of content stabilized and enhanced the main educational hub. The primary directory path (<code>/programs-courses/</code>) experienced a +6.52% traffic growth on desktop (reaching 39,967 active users) and a +6.72% growth on mobile (reaching 34,401 active users). More importantly, the new track pages held user interest cleanly, keeping average session interaction lengths exceptionally high at 1 minute and 10 seconds on desktop and 57 seconds on mobile viewports, maintaining an active baseline engagement rate above 91%.</p>
+
+            <h4>3.2 Desktop Funnel Velocity & Cognitive Load Mitigation</h4>
+            <p>The most definitive architectural validation emerged from the primary onboarding node (<code>/steps-to-apply/</code>). By replacing text-heavy lists with a highly scannable, flat, visual checklist grid, user interaction dynamics shifted dramatically. As technical SEO optimization funneled an influx of new traffic to the page (+45.91% user growth, totaling 2,428 active desktop users), the average time spent on the page decreased by -34.87%.</p>
+            <p>In standard digital marketing, a reduction in time-on-page is misinterpreted as a failure indicator. However, in complex UX product funnels, this represents an extraordinary victory in cognitive load reduction. By presenting dense application requirements in an optimized layout, prospective students parsed the technical information instantly and transitioned straight into active application profiles (<code>/apply-now/</code> sessions expanded to 1 minute and 15 seconds of highly focused form-field completion).</p>
+
+            
+            <h3>4. Unified Performance Evaluation Matrix</h3>
+            <p>The comprehensive matrix below blends 12-month baseline volumes with 30-day comparative growth trends to provide a single, clean source of truth for core pathways:</p>
+            
+            <div class="table-responsive">
+                <table class="matrix-sheet">
+                    <thead>
+                        <tr>
+                            <th>Page Path & Channel Segment</th>
+                            <th>12-Month Active Users</th>
+                            <th>30-Day Active Users</th>
+                            <th>30-Day YoY User Change</th>
+                            <th>30-Day Avg. Time</th>
+                            <th>30-Day YoY Time Change</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>/programs-courses/</strong> (Desktop Search)</td>
+                            <td>39,967</td>
+                            <td>4,361</td>
+                            <td style="color: #16a34a; font-weight: 700;">+6.52%</td>
+                            <td>1m 10s</td>
+                            <td style="color: #16a34a; font-weight: 700;">+31.96%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>/programs-courses/</strong> (Mobile Search)</td>
+                            <td>34,401</td>
+                            <td>3,893</td>
+                            <td style="color: #16a34a; font-weight: 700;">+6.72%</td>
+                            <td>57s</td>
+                            <td style="color: #16a34a; font-weight: 700;">+6.29%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>/students/apply/apply-now/</strong> (Desktop Search)</td>
+                            <td>17,315</td>
+                            <td>858</td>
+                            <td style="color: #16a34a; font-weight: 700;">+124.61%</td>
+                            <td>--</td>
+                            <td>--</td>
+                        </tr>
+                        <tr>
+                            <td><strong>/steps-to-apply/</strong> (Desktop Search)</td>
+                            <td>--</td>
+                            <td>2,428</td>
+                            <td style="color: #16a34a; font-weight: 700;">+45.91%</td>
+                            <td>43s</td>
+                            <td style="color: #dc2626; font-weight: 700;">-34.87%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>/steps-to-apply/</strong> (Mobile Search)</td>
+                            <td>--</td>
+                            <td>1,109</td>
+                            <td style="color: #16a34a; font-weight: 700;">+15.40%</td>
+                            <td>14s</td>
+                            <td style="color: #16a34a; font-weight: 700;">+44.16%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>5. Telemetry Integrity & Advanced Data-Cleaning</h3>
+            <p>To ensure that all optimization trends were true reflections of prospective student behavior rather than network interference, a rigorous data hygiene pass was conducted in the final stages of the annual audit. Top-level analytics initially showed an unexpected, un-segmented 40,000-user traffic surge entering the root directory via direct desktop channels, recording artificial 13-second session durations.</p>
+            <p>By executing advanced telemetry segmentation inside GA4, I identified this anomaly as automated non-regional data center bot scrapers. I constructed strict, geo-fenced proxy filters to isolate traffic to regional recruitment markets. This technical pass excluded over 35,000 automated non-human sessions, successfully isolating an authentic baseline of 14,363 active direct users. This data-cleaning pass verified with absolute certainty that the global engagement growth (+42.76% deep reading extension on desktop organic search) was entirely driven by real human applicants interacting with the newly launched pages.</p>
+
+            <h3>6. Conclusions & Next-Cycle Product Roadmap</h3>
+            <p>This case study demonstrates that large-scale information architecture expansion, when paired with component-driven design and structured SEO templates, can scale an enterprise web footprint without fragmenting the user journey. By framing data-cleaning as a crucial quality assurance layer, the project successfully isolates and verifies genuine human behavioral improvements. The audited 12-month performance baselines have unlocked a clear data-backed roadmap for the next UX engineering sprint:</p>
+            <ul>
+                <li><strong>CRM Workflow Ingestion Refinement:</strong> Automatically parsing entry points on top-performing short-term vocational tracks to inject custom behavioral tags within Element451.</li>
+                <li><strong>Progressive Onboarding Disclosures:</strong> Leveraging the high reading velocity on desktop checklists to introduce interactive, automated progress bars that turn fast visual patterns into immediate enrollment form submissions.</li>
+            </ul>
+        </section>
+
+    </div>
+
+</body>
+</html>
